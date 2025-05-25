@@ -1,5 +1,5 @@
 public abstract class HashTable {
-    protected int size = 16; // atualizado para 16 posições
+    protected int size = 16; 
     protected Node[] table = new Node[size];
     protected int collisions = 0;
     protected int elements = 0;
@@ -24,28 +24,6 @@ public abstract class HashTable {
             if (current.key.equals(key)) return true;
             current = current.next;
         }
-        return false;
-    }
-
-    public boolean remove(String key) {
-        int index = hash(key);
-        Node current = table[index];
-        Node previous = null;
-
-        while (current != null) {
-            if (current.key.equals(key)) {
-                if (previous == null) {
-                    table[index] = current.next;
-                } else {
-                    previous.next = current.next;
-                }
-                elements--;
-                return true;
-            }
-            previous = current;
-            current = current.next;
-        }
-
         return false;
     }
 
