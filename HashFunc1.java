@@ -1,9 +1,9 @@
 public class HashFunc1 extends HashTable {
     @Override
     public int hash(String key) {
-        int hash = 0;
+        int hash = 7;
         for (int i = 0; i < key.length(); i++) {
-            hash ^= (key.charAt(i) * (i + 1));
+            hash = hash * 31 + key.charAt(i);
         }
         return Math.abs(hash) % size;
     }
