@@ -3,7 +3,7 @@ public abstract class HashTable {
     protected Node[] table = new Node[size];
     protected int collisions = 0;
     protected int elements = 0;
-    protected final double loadFactorThreshold = 0.75;
+    protected final double loadFactorThreshold = 0.7;
 
     public void insert(String key) {
         if ((double) elements / size > loadFactorThreshold) {
@@ -78,7 +78,7 @@ public abstract class HashTable {
                 count++;
                 current = current.next;
             }
-            System.out.println("\u00cdndice " + i + ": " + count + " nome(s)");
+            System.out.println("Indice " + i + ": " + count + " nome(s)");
         }
     }
 
