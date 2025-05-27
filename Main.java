@@ -60,5 +60,8 @@ public class Main {
         System.out.println("Tempo de inserção: " + (tempo2F - tempo2S) + " ms");
         System.out.println("Tempo de busca: " + (tempoBusca2F - tempoBusca2S) + " ms");
         table2.printDistribution();
+
+//        table1.pesquisaFiltro('a');
+//        table2.pesquisaFiltro('a');
     }
 }

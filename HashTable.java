@@ -53,6 +53,23 @@ public abstract class HashTable {
 //        return false;
 //    }
 
+//    public void pesquisaFiltro(char filtro) {
+//        System.out.println("Filtro => " + filtro + ":");
+//        int cont = 0;
+//        for (int i = 0; i < size; i++) {
+//            Node current = table[i];
+//            while (current != null) {
+//                if (Character.toUpperCase(current.key.charAt(0)) == Character.toUpperCase(filtro)) {
+//                    // System.out.println(current.key);
+//                    cont++;
+//                }
+//                current = current.next;
+//            }
+//        }
+//        System.out.println(cont);
+//    }
+
+
     private void resize() {
         int oldSize = size;
         size *= 2;
