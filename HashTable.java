@@ -1,17 +1,22 @@
 public abstract class HashTable {
-    protected int size = 16; 
+    protected int size = 16;
     protected Node[] table = new Node[size];
     protected int collisions = 0;
     protected int elements = 0;
+    protected final double loadFactorThreshold = 0.75;
 
     public void insert(String key) {
-        int index = hash(key);
-        Node current = table[index];
+        if ((double) elements / size > loadFactorThreshold) {
+            resize();
+        }
 
-        if (current != null) collisions++;
+        int index = hash(key);
 
         Node newNode = new Node(key);
-        newNode.next = current;
+        newNode.next = table[index];
+
+        if (table[index] != null) collisions++;
+
         table[index] = newNode;
         elements++;
     }
@@ -27,6 +32,44 @@ public abstract class HashTable {
         return false;
     }
 
+//    public boolean delete(String key) {
+//        int index = hash(key);
+//        Node current = table[index];
+//        Node previous = null;
+//
+//        while (current != null) {
+//            if (current.key.equals(key)) {
+//                if (previous == null) {
+//                    table[index] = current.next;
+//                } else {
+//                    previous.next = current.next;
+//                }
+//                elements--;
+//                return true;
+//            }
+//            previous = current;
+//            current = current.next;
+//        }
+//        return false;
+//    }
+
+    private void resize() {
+        int oldSize = size;
+        size *= 2;
+        Node[] oldTable = table;
+        table = new Node[size];
+        elements = 0;
+        collisions = 0;
+
+        for (int i = 0; i < oldSize; i++) {
+            Node current = oldTable[i];
+            while (current != null) {
+                insert(current.key);
+                current = current.next;
+            }
+        }
+    }
+
     public void printDistribution() {
         for (int i = 0; i < size; i++) {
             int count = 0;
@@ -35,7 +78,7 @@ public abstract class HashTable {
                 count++;
                 current = current.next;
             }
-            System.out.println("Índice " + i + ": " + count + " nome(s)");
+            System.out.println("\u00cdndice " + i + ": " + count + " nome(s)");
         }
     }
 
